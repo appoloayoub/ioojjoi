@@ -1,0 +1,3342 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" wf-loading>
+    <head>
+        
+    
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+
+
+    <script>
+        window.newrelicAttributes = {
+            accountId: "1796917",
+            trustKey: "1796917",
+            agentId: "149134891",
+            licenseKey: "f701a6c63c",
+            applicationId: "149134891"
+        };
+    </script>
+    <script src="/newrelic.js"></script>
+
+
+
+<!-- Compliant Google Optimize -->
+<script>
+        (() => {
+            const getPrivacyCookie = () => {
+                const privacyCookie = document.cookie.match('(^|;)\\s*cmapi_cookie_privacy\\s*=\\s*([^;]+)');
+
+                return privacyCookie ? privacyCookie.pop() : null;
+            };
+
+            const getBehaviorCookie = () => {
+                const behaviorCookie = document.cookie.match('(^|;)\\s*notice_behavior\\s*=\\s*([^;]+)');
+
+                return behaviorCookie ? behaviorCookie.pop() : null;
+            };
+
+            const hasOptedIn = () => {
+                const behaviorCookie = getBehaviorCookie();
+                const privacyCookie = getPrivacyCookie();
+
+                return behaviorCookie && behaviorCookie.match(/^none$/) || privacyCookie && privacyCookie.match(/2|3/);
+            }
+
+            const appendOptimize = () => {
+                const head = document.getElementsByTagName('head')[0];
+
+                if (head) {
+                    const script = document.createElement('script');
+
+                    script.src = 'https://www.googleoptimize.com/optimize.js?id=GTM-M6BQF2W';
+                    script.id = "google-optimize"
+                    head.append(script);
+                }
+            };
+
+            const removeOptimize = () => {
+                const head = document.getElementsByTagName('head')[0];
+                const optimizeScript = document.getElementById('google-optimize');
+
+                if (head && optimizeScript) {
+                    head.removeChild(optimizeScript);
+                }
+            }
+
+            /**
+             * Append or remove Google Optimize script to head,
+             * depending on whether user's cookie preferences
+             * have opted in and Google Optimize script already
+             * exists in head.
+             */
+            const handleConsentDecision = () => {
+                const googleOptimizeScript = document.getElementById('google-optimize');
+                if (hasOptedIn() && !googleOptimizeScript) {
+                    appendOptimize();
+                } else if (!hasOptedIn() && googleOptimizeScript) {
+                    removeOptimize();
+                }
+            }
+
+            /**
+             * Callbacks will occur in the form of a PostMessage event. This code listens for the
+             * appropriately formatted PostMessage event, gets the new consent decision, and then sets
+             * the new cookie preferences.
+             */
+            const handlePreferencesUpdated = (e) => {
+                try {
+                    const { capabilities, action } = JSON.parse(e.data).PrivacyManagerAPI || {};
+                    if (capabilities && action === 'getConsentDecision') {
+                        handleConsentDecision();
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            /**
+             * Registers with the TrustArc Content Manager (CM) API to receive callbacks when
+             * a preference update occurs, and initialized dispatched preferences array to
+             * the user's current preferences. You must wait for the CM API (PrivacyManagerAPI object)
+             * to exist on the page before registering.
+             */
+            const CMICallbackRegister = () => {
+                const interval = setInterval(() => {
+                    if (window.PrivacyManagerAPI && interval) {
+                        const apiObject = {
+                            PrivacyManagerAPI: {
+                                action: 'getConsentDecision',
+                                timestamp: new Date().getTime(),
+                                self: window.location.host
+                            }
+                        };
+                        window.top.postMessage(JSON.stringify(apiObject), '*');
+                        clearInterval(interval);
+                    }
+                }, 50);
+            }
+
+            /**
+             * Listener registers a message callback on the TrustArc Content Manager when
+             * user's cookie preferences are updated and adds an event listener
+             * on the message events that occur when said preference updates occur.
+             */
+            const trustArcScriptLoadListener = () => {
+                if (typeof window.truste === 'object') {
+                    CMICallbackRegister();
+                    window.addEventListener('message', handlePreferencesUpdated);
+                }
+            }
+
+            window.addEventListener('load', trustArcScriptLoadListener);
+            const behaviorCookie = getBehaviorCookie();
+
+            if (behaviorCookie === null) {
+                // wait for TrustArc script to load before checking cookies
+                let numIntervals = 0;
+                const scriptLoadInterval = setInterval( () => {
+                    if(getBehaviorCookie()) {
+                        handleConsentDecision();
+                        clearInterval(scriptLoadInterval);
+                    }
+                    // Stop running interval after 8 times (8x the documented 500ms it
+                    // should take to load the TrustArc script on the BE) to prevent running forever
+                    if (++numIntervals >= 10) {
+                        clearInterval(scriptLoadInterval);
+                    }
+                } , 500);
+            } else {
+                handleConsentDecision();
+            }
+        })();
+</script>
+    <!-- End Compliant Google Optimize -->
+
+
+<!-- Google Tag Manager -->
+<script>
+    (function(w, d, s, l) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l !== 'dataLayer' ? '&l=' + l : '';
+
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-TG32RCX' + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer');
+</script>
+<!-- End Google Tag Manager -->
+
+
+
+<style>
+    [unresolved] {
+        visibility: hidden !important;
+    }
+</style>
+
+
+<noscript>
+    <style>
+        [unresolved] {
+            visibility: visible !important;
+        }
+    </style>
+</noscript>
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    .image img {
+        max-width: 100%;
+    }
+</style>
+
+
+<script>
+    
+    if (!CSS.supports('width', 'calc((var(--test))')) {
+        window.ShadyCSS = {
+            shimcssproperties: true
+        };
+    }
+
+    document.addEventListener('nds.typeKit.active', function() {
+        document.querySelector('html').removeAttribute('wf-loading');
+    });
+</script>
+
+<script src="//unpkg.com/@webcomponents/webcomponentsjs@2.2.7/webcomponents-loader.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script src="//w.soundcloud.com/player/api.js"></script>
+
+
+
+
+
+
+<script>
+    window.nds = window.nds || {};
+    window.nds.componentUrlPrefix = '//pl.ea.com/release/4.53.2/elements/ea-elements.min.js'.substring(0, '//pl.ea.com/release/4.53.2/elements/ea-elements.min.js'.lastIndexOf('/') + 1);
+    window.nds.contentfulUrl = 'https://contentful-proxy.juno.ea.com/graphql';
+    window.nds.salUrl = 'https://service-aggregation-layer.juno.ea.com/graphql';
+    window.nds.useApq = true;
+    window.nds.salClientId = 'eacom-fe';
+    window.nds.xGameDistMethod = 'eacom';
+    window.nds.lockboxGameId = 'eacom';
+    window.nds.lockboxInvoiceSource = 'EACOM-STORE-WEB-%countryCode%';
+    window.nds.lockboxExternalPaymentPath = '/lockbox-external-payment';
+</script>
+<script type="module" src="//pl.ea.com/release/4.53.2/elements/ea-elements.min.js"></script>
+<script nomodule defer src="//pl.ea.com/release/4.53.2/elements/ea-elements.min.js"></script>
+
+
+
+    
+        
+            
+                <link href="https://fast.fonts.net/cssapi/37bb6320-c5d5-4118-be08-fdbf0561450c.css" rel="stylesheet" />
+            
+        
+    
+
+<style>
+    @font-face {
+    font-family: 'ElectronicArtsDisplay';
+    src: url(/assets/fonts/display/ElectronicArtsDisplay-Regular.woff2) format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsDisplay';
+    src: url(/assets/fonts/display/ElectronicArtsDisplay-Bold.woff2) format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Light.woff2) format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-LightItalic.woff2) format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Regular.woff2) format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Italic.woff2) format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Bold.woff2) format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-BoldItalic.woff2) format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+</style>
+
+
+
+
+
+
+    <title>FIFA Mobile News and Updates - EA SPORTS Official Site</title>
+    
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="FIFA Mobile News and Updates - EA SPORTS Official Site">
+<meta property="og:description" content="Get the latest FIFA Mobile news, updates and downloads, and see new features and gameplay videos.">
+<meta property="og:url" content="https://www.ea.com/games/fifa/fifa-mobile/news">
+<meta property="og:site_name" content="Electronic Arts Inc.">
+
+    <meta property="og:image" content="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/featured_images/fifa-mobile-grid-tile-season-5-16x9.jpg.adapt.crop191x100.1200w.jpg">
+
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="628">
+
+
+<meta name="description" content="Get the latest FIFA Mobile news, updates and downloads, and see new features and gameplay videos.">
+<meta name="author" content="Electronic Arts">
+<meta property="article:modified_time" content="2022-11-15T19:20:41Z">
+<meta property="article:published_time" content="2018-08-23T16:20-05:00">
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ea">
+<meta name="twitter:title" content="FIFA Mobile News and Updates - EA SPORTS Official Site">
+<meta name="twitter:description" content="Get the latest FIFA Mobile news, updates and downloads, and see new features and gameplay videos.">
+
+    <meta name="twitter:image" content="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/featured_images/fifa-mobile-grid-tile-season-5-16x9.jpg.adapt.crop16x9.1023w.jpg">
+
+<meta name="twitter:creator" content="@ea">
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+     
+"image": {
+    "@type": "ImageObject",
+    "url": "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/featured_images/fifa-mobile-grid-tile-season-5-16x9.jpg.adapt.crop191x100.1200w.jpg"
+},
+ 
+    "author": {
+      "@type": "Organization",
+      "name": "Electronic Arts",
+      "sameAs": "https://en.wikipedia.org/wiki/Electronic_Arts"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Electronic Arts",
+        "sameAs": "https://en.wikipedia.org/wiki/Electronic_Arts",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://media.contentapi.ea.com/content/dam/ea/EA_logo.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "inLanguage": "en",
+    "description": "Get the latest FIFA Mobile news, updates and downloads, and see new features and gameplay videos.",
+    "datePublished": "2018-08-23T16:20-05:00",
+    "dateModified": "2022-11-15T19:20:41Z",
+    "headline": "FIFA Mobile News and Updates - EA SPORTS Official Site",
+    "url": "https://www.ea.com/games/fifa/fifa-mobile/news"
+}
+</script>
+
+
+
+    </head>
+    <body unresolved>
+        
+    
+
+
+<custom-style><style include="ea-shared-styles-base-common"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-headings"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-lists"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-links"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-images"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-headings"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-paragraphs"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-labels"></style></custom-style>
+
+
+    
+        
+            <custom-style>
+                <style>
+                    html {
+                        
+                            --ea-theme-primary-font-family: DIN W05 Regular;
+                        
+                            --ea-theme-secondary-font-family: DIN W05 Regular;
+                        
+                            --ea-theme-tabs-tab-text-transform: none;
+                        
+                            --fifa21-brand-violet: #8A4FFF;
+                        
+                            --fifa21-brand-mint: #29FFC9;
+                        
+                            --fifa21-brand-orange: #FF5114;
+                        
+                            --fifa21-brand-obsidan: #201E20;
+                        
+                            --fifa21-brand-FUT: #E518FB;
+                        
+                            --fifa21-brand-VOLTA: #13F0FE;
+                        
+                            --ea-theme-color: var(--fifa23-orange);
+                        
+                            --ea-theme-dark-gradient: #3DE3EF;
+                        
+                            --ea-theme-light-gradient: #3DE3EF;
+                        
+                            --ea-theme-body-font-size-mobile: 15px;
+                        
+                            --ea-theme-body-line-height-mobile: 160%;
+                        
+                            --ea-theme-body-font-size-tablet-landscape: 16px;
+                        
+                            --ea-theme-body-line-height-tablet-landscape: 160%;
+                        
+                            --ea-theme-body-font-size-desktop: 19px;
+                        
+                            --ea-theme-body-line-height-desktop: 148%;
+                        
+                            --ea-theme-h4-font-size-tablet-landscape: 21px;
+                        
+                            --ea-theme-stream-ui-paddle-default: #878787;
+                        
+                            --ea-theme-d1-font-style: var(--ea-theme-display-font-style);
+                        
+                            --ea-theme-d2-font-style: var(--ea-theme-display-font-style);
+                        
+                            --ea-theme-d3-font-style: var(--ea-theme-display-font-style);
+                        
+                            --ea-theme-d4-font-style: var(--ea-theme-display-font-style);
+                        
+                            --ea-theme-d5-font-style: var(--ea-theme-display-font-style);
+                        
+                            --ea-theme-d6-font-style: var(--ea-theme-display-font-style);
+                        
+                            --ea-theme-l1-font-size-desktop: 24px;
+                        
+                            --ea-theme-l1-font-size-tablet-landscape: 20px;
+                        
+                            --ea-light-color: #FCFCFC;
+                        
+                            --ea-text-case: uppercase;
+                        
+                            --nintendo-brand-color: #ffffff;
+                        
+                            --ea-theme-label-font-weight: var(--ea-theme-header-font-weight-bold);
+                        
+                            --origin-brand-color: #FF4747;
+                        
+                            --scroll-margin-top: 100px;
+                        
+                            --ea-theme-header-font-family: var(--ea-theme-secondary-font-family);
+                        
+                            --ea-theme-header-font-weight-normal: 300;
+                        
+                            --ea-theme-header-font-weight-bold: 400;
+                        
+                            --ea-theme-header-letter-spacing: normal;
+                        
+                            --ea-theme-body-font-family: var(--ea-theme-primary-font-family);
+                        
+                            --ea-theme-body-font-weight-light: lighter;
+                        
+                            --ea-theme-body-font-weight-normal: 400;
+                        
+                            --ea-theme-body-font-weight-bold: 600;
+                        
+                            --ea-theme-body-letter-spacing: normal;
+                        
+                            --ea-theme-typographic-headings-font-family: Rifton W05 Norm;
+                        
+                            --ea-theme-display-font-style: normal;
+                        
+                            --ea-theme-l1-font-weight: var(--ea-theme-label-font-weight);
+                        
+                            --ea-theme-l2-font-weight: var(--ea-theme-label-font-weight);
+                        
+                            --ea-theme-l3-font-weight: var(--ea-theme-label-font-weight);
+                        
+                            --ea-theme-l4-font-weight: var(--ea-theme-label-font-weight);
+                        
+                            --ea-theme-h1-font-weight: var(--ea-theme-header-font-weight-bold);
+                        
+                            --ea-theme-h2-font-weight: var(--ea-theme-header-font-weight-bold);
+                        
+                            --ea-theme-h3-font-weight: var(--ea-theme-header-font-weight-bold);
+                        
+                            --ea-theme-h4-font-weight: var(--ea-theme-header-font-weight-normal);
+                        
+                            --ea-theme-h5-font-weight: var(--ea-theme-header-font-weight-bold);
+                        
+                            --ea-theme-h6-font-weight: var(--ea-theme-header-font-weight-normal);
+                        
+                            --ea-theme-d1-font-weight: var(--ea-theme-display-font-weight);
+                        
+                            --ea-theme-d2-font-weight: var(--ea-theme-display-font-weight);
+                        
+                            --ea-theme-d3-font-weight: var(--ea-theme-display-font-weight);
+                        
+                            --ea-theme-d4-font-weight: var(--ea-theme-display-font-weight);
+                        
+                            --ea-theme-d5-font-weight: var(--ea-theme-display-font-weight);
+                        
+                            --ea-theme-d6-font-weight: var(--ea-theme-display-font-weight);
+                        
+                            --fifa-animation-timing-long: 1600ms;
+                        
+                            --ea-access-brand-color: var(--ea-dark-color);
+                        
+                            --fifa22-brand-blue: #1E41AF;
+                        
+                            --ea-theme-tile-title-font-family: Rifton W05 Norm;
+                        
+                            --fifa23-orange: #FF5E0C;
+                        
+                            --fifa22-acid-green: #C4F750;
+                        
+                            --ea-theme-tile-title-font-weight: 500;
+                        
+                            --ea-theme-header-line-height-mobile: 1.25;
+                        
+                            --ea-theme-header-line-height-tablet: var(--ea-theme-header-line-height-mobile);
+                        
+                            --ea-theme-header-line-height-desktop: var(--ea-theme-header-line-height-mobile);
+                        
+                            --ea-theme-display-font-weight: var(--ea-theme-header-font-weight-bold);
+                        
+                            --font-style-typographic-headings: normal;
+                        
+                            --ea-theme-h4-font-size-desktop: 21px;
+                        
+                            --ea-theme-h4-line-height-desktop: 1.5;
+                        
+                            --ea-theme-h4-font-size-mobile: 20px;
+                        
+                            --ea-theme-d3-font-size-desktop: 34px;
+                        
+                            --ea-theme-d3-font-size-tablet-landscape: 30px;
+                        
+                            --ea-theme-d3-font-size-tablet-portrait: 25px;
+                        
+                            --ea-theme-d3-font-size-mobile: 27px;
+                        
+                            --ea-theme-d4-font-size-desktop: 24px;
+                        
+                            --ea-theme-d4-font-size-tablet-landscape: 24px;
+                        
+                            --ea-theme-d4-font-size-tablet-portrait: 22px;
+                        
+                            --ea-theme-d4-font-size-mobile: 20px;
+                        
+                            --ea-theme-h6-font-size-desktop: 22px;
+                        
+                    }
+                </style>
+            </custom-style>
+        
+    
+
+
+
+<ea-elements-loader elements="ea-network-nav, ea-player, ea-type-kit">
+</ea-elements-loader>
+
+
+    <ea-network-nav
+        unresolved
+        userData="/user-data"
+        content="//nds-network-nav.ea.com//en-us/network-nav"
+        login-url="/login"
+        logout-url="/logout"
+            
+                
+                    
+                        hide-logo
+                    
+                
+            
+    ></ea-network-nav>
+
+
+
+
+    
+        
+            
+                
+<ea-elements-loader elements="ea-page-background">
+</ea-elements-loader>
+<ea-page-background
+    unresolved
+    layout="fixed"
+    background-color=""
+    
+>
+    
+
+
+</ea-page-background>
+
+            
+        
+    
+
+
+
+
+    
+        
+            
+                
+
+    
+<ea-elements-loader elements="ea-local-nav-advanced, ea-link">
+</ea-elements-loader>
+<ea-local-nav-advanced
+    
+    
+        home-text = "FIFA Mobile"
+        home-tooltip = "FIFA Mobile"
+        home-link = "/en-us/games/fifa/fifa-mobile"
+    
+    
+        logo-image="https://media.contentapi.ea.com/content/dam/ea/fifa-mobile/season-2022/common/fmobile-szn6-logo-nav.svg"
+    
+    
+    
+        theme = "light"
+    
+    
+        shelf-type = "band"
+    
+    
+        open-drawer-text = "Menu"
+    
+    
+        close-drawer-text = "Close"
+    
+    
+        mini
+    
+    
+
+    
+
+    
+
+    
+        game-link-text = "FIFA Mobile"
+    
+
+    
+        game-link-url = "/games/fifa/fifa-mobile"
+    
+
+    
+        franchise-link-text = "FIFA"
+    
+
+    
+        franchise-link-url = "/games/fifa"
+    
+    unresolved
+>
+    
+
+    
+
+    
+        <a title="FIFA Mobile" href="/en-us/games/fifa/fifa-mobile">
+            FIFA Mobile
+            
+                <img
+                    src="https://media.contentapi.ea.com/content/dam/ea/fifa-mobile/season-2022/common/fmobile-szn6-logo-nav.svg"
+                    
+                />
+            
+        </a>
+    
+
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="dark"
+                    link-href="/en-us/games/fifa/fifa-mobile/news"
+                    link-title="News"
+                    link-text="News"
+                    unresolved
+                >
+                    <a href="/en-us/games/fifa/fifa-mobile/news">News</a>
+                </ea-link>
+            
+        
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="dark"
+                    link-href="https://help.ea.com/fifa/fifa-mobile/"
+                    link-title="Help"
+                    link-text="Help"
+                    unresolved
+                >
+                    <a href="https://help.ea.com/fifa/fifa-mobile/">Help</a>
+                </ea-link>
+            
+        
+    
+        
+            
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav
+    slot="local-nav-shelf-link"
+    toggle-text="Community"
+    theme="light"
+    type="simple"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text=""
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Forum"
+    link-href="https://answers.ea.com/t5/FIFA-Mobile/ct-p/fifa-mobile-19-en"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://answers.ea.com/t5/FIFA-Mobile/ct-p/fifa-mobile-19-en">Forum</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="HOTM"
+    link-href="/en-us/games/fifa/fifa-mobile/highlights-of-the-month"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-mobile/highlights-of-the-month">HOTM</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+</ea-local-nav-shelf-sub-nav>
+
+        
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="dark"
+                    link-href="/en-us/games/fifa/fifa-mobile/guide"
+                    link-title="GUIDE"
+                    link-text="GUIDE"
+                    unresolved
+                >
+                    <a href="/en-us/games/fifa/fifa-mobile/guide">GUIDE</a>
+                </ea-link>
+            
+        
+    
+
+    
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="/en-us/games/fifa/fifa-mobile/news"
+        link-title="News"
+        link-text="News"
+        text-color="dark"
+        unresolved
+    >
+        <a href="/en-us/games/fifa/fifa-mobile/news">News</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="https://help.ea.com/fifa/fifa-mobile/"
+        link-title="Help"
+        link-text="Help"
+        text-color="dark"
+        unresolved
+    >
+        <a href="https://help.ea.com/fifa/fifa-mobile/">Help</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-advanced">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-advanced
+        
+            slot="local-nav-drawer-link"
+        
+        toggle-text="Community"
+        toggle-tooltip=""
+        theme="light"
+        
+            type="simple"
+        
+        unresolved
+    >
+        
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://answers.ea.com/t5/FIFA-Mobile/ct-p/fifa-mobile-19-en"
+        link-title=""
+        link-text="Forum"
+        text-color=""
+        unresolved
+    >
+        <a href="https://answers.ea.com/t5/FIFA-Mobile/ct-p/fifa-mobile-19-en">Forum</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="/en-us/games/fifa/fifa-mobile/highlights-of-the-month"
+        link-title=""
+        link-text="HOTM"
+        text-color=""
+        unresolved
+    >
+        <a href="/en-us/games/fifa/fifa-mobile/highlights-of-the-month">HOTM</a>
+    </ea-link>
+
+
+        
+    </ea-local-nav-drawer-sub-nav-advanced>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="/en-us/games/fifa/fifa-mobile/guide"
+        link-title="GUIDE"
+        link-text="GUIDE"
+        text-color="dark"
+        unresolved
+    >
+        <a href="/en-us/games/fifa/fifa-mobile/guide">GUIDE</a>
+    </ea-link>
+
+
+        
+    
+
+    
+        
+
+
+    <ea-elements-loader elements="ea-cta-dropdown, ea-hybrid-modal-invoker">
+    </ea-elements-loader>
+
+    
+        <ea-cta-dropdown
+            slot="cta-dropdown"
+            theme="light"
+            cta-title-text="Download Now"
+            cta-link="https://smarturl.it/fifa-mobile-apple"
+            border-color="none"
+            fill-color="brand"
+            text-color="dark"
+
+            
+            
+            
+            unresolved
+        >
+            
+                <ea-container>
+                
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="image"
+    
+    
+        link-url="https://smarturl.it/fifa-mobile-apple"
+    
+    
+    
+        link-text="Download Now"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="brand"
+    
+    
+        text-color="light"
+    
+    
+        stroke-color="none"
+    
+    
+        target="_blank"
+    
+    
+        target-os="ios"
+    
+    
+        image="https://media.contentapi.ea.com/content/dam/eacom/pt-br/common/companion-badge-apple-app-store.png"
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://smarturl.it/fifa-mobile-apple"
+        
+        
+    >
+        
+            Download Now
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="image"
+    
+    
+        link-url="https://smarturl.it/fifa-mobile-android"
+    
+    
+    
+        link-text="Download Now"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="brand"
+    
+    
+        text-color="light"
+    
+    
+        stroke-color="none"
+    
+    
+        target="_blank"
+    
+    
+        target-os="android"
+    
+    
+        image="https://media.contentapi.ea.com/content/dam/masseffect/en-us/common/companion-badge-google-play.png"
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://smarturl.it/fifa-mobile-android"
+        
+        
+    >
+        
+            Download Now
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+
+            
+        </ea-cta-dropdown>
+    
+
+
+
+        
+            <ea-elements-loader elements="ea-local-nav-dropdown">
+            </ea-elements-loader>
+            <ea-local-nav-dropdown
+                slot="local-nav-dropdown"
+                theme="light"
+                menu-title=""
+                cta-title-text="Download Now"
+                cta-link="https://smarturl.it/fifa-mobile-apple"
+                border-color="none"
+                fill-color="brand"
+                text-color="dark"
+                unresolved
+            >
+            
+                <ea-container>
+                    
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="image"
+    
+    
+        link-url="https://smarturl.it/fifa-mobile-apple"
+    
+    
+    
+        link-text="Download Now"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="brand"
+    
+    
+        text-color="light"
+    
+    
+        stroke-color="none"
+    
+    
+        target="_blank"
+    
+    
+        target-os="ios"
+    
+    
+        image="https://media.contentapi.ea.com/content/dam/eacom/pt-br/common/companion-badge-apple-app-store.png"
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://smarturl.it/fifa-mobile-apple"
+        
+        
+    >
+        
+            Download Now
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                    
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="image"
+    
+    
+        link-url="https://smarturl.it/fifa-mobile-android"
+    
+    
+    
+        link-text="Download Now"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="brand"
+    
+    
+        text-color="light"
+    
+    
+        stroke-color="none"
+    
+    
+        target="_blank"
+    
+    
+        target-os="android"
+    
+    
+        image="https://media.contentapi.ea.com/content/dam/masseffect/en-us/common/companion-badge-google-play.png"
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://smarturl.it/fifa-mobile-android"
+        
+        
+    >
+        
+            Download Now
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+            
+            </ea-local-nav-dropdown>
+        
+    
+</ea-local-nav-advanced>
+
+
+
+            
+        
+    
+
+
+
+
+    
+        
+            
+                
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="40px"
+    
+    
+        small="40px"
+    
+    
+        medium="40px"
+    
+    
+        large="40px"
+    
+    
+        largest="40px"
+    
+>
+</ea-spacer>
+
+            
+        
+    
+
+
+<main>
+    
+
+
+
+    <div>
+        <style>
+html {
+--ea-theme-color: #FF5E0C;
+
+}
+</style>
+    </div>
+
+
+<ea-elements-loader elements="ea-page-background">
+</ea-elements-loader>
+<ea-page-background
+    unresolved
+    layout="fixed"
+    background-color=""
+    
+>
+    
+
+
+    <ea-elements-loader elements="ea-image">
+    </ea-elements-loader>
+    <ea-image
+        unresolved
+        tooltip=""
+        smallest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.320w.png"
+        small="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.768w.png"
+        medium="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.1024w.png"
+        large="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.1456w.png"
+        largest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.1920w.png"
+        
+        
+        
+        
+            slot="image"
+        
+        
+    >
+        <img
+            src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.320w.png"
+            alt=""
+            srcset="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.320w.png 320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.768w.png 768w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.1024w.png 1024w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.1456w.png 1320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/page_backgrounds/fifamobile-szn5-page-bg.png.adapt.1920w.png 1456w" />
+    </ea-image>
+
+
+
+</ea-page-background>
+
+<ea-elements-loader elements="ea-section">
+</ea-elements-loader>
+<ea-section
+    unresolved
+    slot="section"
+    
+    
+        type="full-bleed"
+    
+    
+        layout="100"
+    
+    
+    
+        background-color="light"
+    
+    
+    
+        background-overflow="hidden"
+    
+    
+        spacing-top="none"
+    
+    
+        spacing-bottom="none"
+    
+    
+    
+    
+    
+>
+    
+    
+
+
+<ea-section-column
+    slot="section-column"
+    
+        indent-left=""
+    
+    
+        indent-right=""
+    
+    
+        text-align="left"
+    
+    
+    
+        mobile-order="0"
+    
+    
+>
+    
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="56px"
+    
+    
+        small="56px"
+    
+    
+        medium="56px"
+    
+    
+        large="56px"
+    
+    
+        largest="56px"
+    
+>
+</ea-spacer>
+
+<ea-elements-loader elements="ea-hero">
+</ea-elements-loader>
+<ea-hero
+    
+        layout="medium"
+    
+    
+        text-position="left"
+    
+    
+        text-align="left"
+    
+    
+        text-color="dark"
+    
+    
+        stacked
+    
+    
+    
+    
+    
+    
+        background-color="none"
+    
+    
+    
+    
+        title-text="FIFA MOBILE NEWS"
+    
+    
+        subtitle-text="Stay on top of all the latest FIFA Mobile news and updates, from live events to new feature updates, right here."
+    
+    
+    
+        image-smallest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop16x9.320w.jpg"
+        image-small="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop16x9.767w.jpg"
+        image-medium="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop2x1.1023w.jpg"
+        image-large="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop5x2.1455w.jpg"
+        image-largest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop7x2.1920w.jpg"
+        image-tooltip=""
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        spacing-bottom="medium"
+    
+    
+        spacing-top="none"
+    
+    
+        scrim-color="none"
+    
+    
+        scrim-opacity="medium"
+    
+    
+    unresolved
+    
+        custom-styles="{}"
+    
+    
+    
+>
+    
+        <h1>FIFA MOBILE NEWS</h1>
+    
+    
+        <h2>Stay on top of all the latest FIFA Mobile news and updates, from live events to new feature updates, right here.</h2>
+    
+    
+    
+    
+        <img
+            src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop16x9.320w.jpg"
+            alt=""
+            srcset="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop16x9.320w.jpg 320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop16x9.767w.jpg 768w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop2x1.1023w.jpg 1024w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop5x2.1455w.jpg 1320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/season-5/global_assets/fifa-mobile-hero-medium-keyart-season-5-7x2-xl.jpg.adapt.crop7x2.1920w.jpg 1456w"
+        />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</ea-hero>
+
+</ea-section-column>
+
+    
+</ea-section>
+
+<ea-elements-loader elements="ea-section">
+</ea-elements-loader>
+<ea-section
+    unresolved
+    slot="section"
+    
+    
+        type="railed"
+    
+    
+        layout="100"
+    
+    
+    
+        background-color="none"
+    
+    
+    
+        background-overflow="visible"
+    
+    
+        spacing-top="none"
+    
+    
+        spacing-bottom="none"
+    
+    
+        mp4-src=""
+    
+    
+        webm-src=""
+    
+    
+    
+>
+    
+    
+
+
+<ea-section-column
+    slot="section-column"
+    
+        indent-left=""
+    
+    
+        indent-right=""
+    
+    
+        text-align="left"
+    
+    
+    
+        mobile-order="0"
+    
+    
+>
+    
+<ea-elements-loader elements="ea-subheading">
+</ea-elements-loader>
+<ea-subheading
+    unresolved
+    
+        type="ordered"
+    
+    
+        layout="large"
+    
+    
+        text-align="left"
+    
+    
+        text-color="dark"
+    
+    
+    
+    
+    
+        spacing-top="medium"
+    
+    
+        spacing-bottom="large"
+    
+>
+    
+    
+    
+</ea-subheading>
+
+<ea-elements-loader elements="ea-grid">
+</ea-elements-loader>
+<ea-grid
+    
+
+    type="ordered"
+
+
+    tile-media-shape="rectangle"
+
+
+
+    layout="3up"
+
+
+    tile-type="vertical"
+
+
+    tile-text-align="left"
+
+
+    tile-text-color="light"
+
+
+    tile-color="dark"
+
+
+
+
+
+
+
+    hide-ctas
+
+
+    hide-brand-stroke
+
+
+    hide-byline
+
+
+    spacing-top="medium"
+
+
+    spacing-bottom="medium"
+
+
+
+
+    
+    
+    
+        tile-scrim-color="none"
+    
+    
+        tile-scrim-opacity="medium"
+    
+    tile-align="center"
+    
+    
+        cards=""
+    
+    
+    
+    
+    
+        ajax-url="/pagination/2-UnKfbP2q3bCcHEy2I2HG2a3Ip5xVp3DPr8CRz%2BmtDc539aR8iTxwL%2Fjr3C%2B5cZ46MxzQDJ%2FzffFcnE5QVxXuDcW1uVPmTLI0wqNMLyZ3YONdaa%2Byb5FUYGuBsReSmAq2fmNaP%2BS3DCmHF6%2FL4hGPV7Lg7xy9Vn3Y"
+    
+    
+        total-count="39"
+    
+    animate-in-order=""
+    animate-out-order=""
+    
+    unresolved
+>
+    
+    
+
+    
+<ea-elements-loader elements="ea-container, ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:0"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-mobile/guide/images/2022/12/wc22-tutorial-thumbnail.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="FIFA"
+        
+        
+            eyebrow-secondary-text="Dec 5, 2022"
+        
+        
+            title-text="FIFA Mobile - FIFA World Cup™ Mode Guide"
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA Mobile - FIFA World Cup™ Mode Guide</h3>
+        
+        
+            <div>FIFA</div>
+            
+                <div>Dec 5, 2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            Explore all features of the FIFA World Cup™ Tournament to guide your nation to glory! We will tell you all about the available National Teams, Difficulty Levels, Rewards, and Live OVR!
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/games/fifa/fifa-mobile/news/fifa-mobile-fifa-world-cup-mode-guide"
+    
+    
+    
+        link-text="Learn More"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="news"
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/games/fifa/fifa-mobile/news/fifa-mobile-fifa-world-cup-mode-guide"
+        
+        
+    >
+        
+            Learn More
+        
+    </a>
+</ea-cta>
+
+        
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-container, ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:1"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa-mobile/season-2022/common/fifa-mobile-wc-keyart-c.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="FIFA"
+        
+        
+            eyebrow-secondary-text="Dec 2, 2022"
+        
+        
+            title-text="FIFA Mobile - Gameplay Controls Guide - Set Pieces"
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA Mobile - Gameplay Controls Guide - Set Pieces</h3>
+        
+        
+            <div>FIFA</div>
+            
+                <div>Dec 2, 2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            Take perfect set pieces with this in-depth guide.
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/games/fifa/fifa-mobile/news/gameplay-controls-guide-set-pieces"
+    
+    
+    
+        link-text="Learn More"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="news"
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/games/fifa/fifa-mobile/news/gameplay-controls-guide-set-pieces"
+        
+        
+    >
+        
+            Learn More
+        
+    </a>
+</ea-cta>
+
+        
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-container, ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:2"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa-mobile/season-2022/common/fifa-mobile-wc-keyart-c.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="FIFA"
+        
+        
+            eyebrow-secondary-text="Dec 2, 2022"
+        
+        
+            title-text="FIFA Mobile - Gameplay Controls Guide - Gesture Controls"
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA Mobile - Gameplay Controls Guide - Gesture Controls</h3>
+        
+        
+            <div>FIFA</div>
+            
+                <div>Dec 2, 2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            Manage how your team performs in-game with advanced gesture controls.
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/games/fifa/fifa-mobile/news/gameplay-controls-guide-gesture-controls"
+    
+    
+    
+        link-text="Learn More"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="news"
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/games/fifa/fifa-mobile/news/gameplay-controls-guide-gesture-controls"
+        
+        
+    >
+        
+            Learn More
+        
+    </a>
+</ea-cta>
+
+        
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-container, ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:3"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa-mobile/season-2022/common/fifa-mobile-wc-keyart-c.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="FIFA"
+        
+        
+            eyebrow-secondary-text="Dec 2, 2022"
+        
+        
+            title-text="FIFA Mobile - Gameplay Controls Guide"
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA Mobile - Gameplay Controls Guide</h3>
+        
+        
+            <div>FIFA</div>
+            
+                <div>Dec 2, 2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            FIFA Mobile Gameplay Controls Guide - Learn how to play the game. Get familiar with the buttons and gestures to defend, pass, and shoot! 
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/games/fifa/fifa-mobile/news/gameplay-guide-button-controls"
+    
+    
+    
+        link-text="Learn More"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="news"
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/games/fifa/fifa-mobile/news/gameplay-guide-button-controls"
+        
+        
+    >
+        
+            Learn More
+        
+    </a>
+</ea-cta>
+
+        
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-container, ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:4"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa-mobile/season-2022/common/fifa-mobile-wc-keyart-c.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="FIFA"
+        
+        
+            eyebrow-secondary-text="Nov 9, 2022"
+        
+        
+            title-text="FIFA Mobile - Release Notes - EA SPORTS Official Site"
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA Mobile - Release Notes - EA SPORTS Official Site</h3>
+        
+        
+            <div>FIFA</div>
+            
+                <div>Nov 9, 2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            Experience the authentic FIFA World Cup 2022™ Tournament, new passing mechanics, commentary, player rosters, kits, crests, and more!
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/games/fifa/fifa-mobile/news/release-notes-november-2022"
+    
+    
+    
+        link-text="Learn More"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="news"
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/games/fifa/fifa-mobile/news/release-notes-november-2022"
+        
+        
+    >
+        
+            Learn More
+        
+    </a>
+</ea-cta>
+
+        
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-container, ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:5"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa-mobile/season-2022/common/fifa-mobile-wc-keyart-c.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="FIFA"
+        
+        
+            eyebrow-secondary-text="Nov 2, 2022"
+        
+        
+            title-text="FIFA Mobile - Advanced Passing Deep Dive"
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA Mobile - Advanced Passing Deep Dive</h3>
+        
+        
+            <div>FIFA</div>
+            
+                <div>Nov 2, 2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            Advanced Passing is coming in the newest gameplay update. Dominate possession and break down the defense in new ways!
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/games/fifa/fifa-mobile/news/gameplay-advanced-passing"
+    
+    
+    
+        link-text="Learn More"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="news"
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/games/fifa/fifa-mobile/news/gameplay-advanced-passing"
+        
+        
+    >
+        
+            Learn More
+        
+    </a>
+</ea-cta>
+
+        
+        
+        
+    </ea-tile>
+</ea-container>
+
+
+
+    
+
+<ea-elements-loader elements="ea-pagination">
+</ea-elements-loader>
+<ea-pagination
+    unresolved
+    slot="pagination"
+    total-count=""
+    page-size="6"
+    current-page="1"
+    next-text="Next"
+    previous-text="Previous"
+    theme="light"
+    
+></ea-pagination>
+
+
+</ea-grid>
+
+<ea-elements-loader elements="ea-subheading">
+</ea-elements-loader>
+<ea-subheading
+    unresolved
+    
+        type="ordered"
+    
+    
+        layout="small"
+    
+    
+        text-align="left"
+    
+    
+        text-color="dark"
+    
+    
+    
+    
+    
+        spacing-top="medium"
+    
+    
+        spacing-bottom="medium"
+    
+>
+    
+    
+    
+</ea-subheading>
+
+</ea-section-column>
+
+    
+</ea-section>
+
+<ea-elements-loader elements="ea-row">
+</ea-elements-loader>
+<ea-row
+    unresolved
+    slot="row"
+    
+
+    type="horizontal"
+
+
+    tile-media-shape="rectangle"
+
+
+
+
+    tile-type="horizontal"
+
+
+    tile-text-align="left"
+
+
+    tile-text-color="dark"
+
+
+    tile-color="light"
+
+
+
+
+
+
+
+
+    hide-brand-stroke
+
+
+
+    spacing-top="medium"
+
+
+    spacing-bottom="medium"
+
+
+
+
+    
+    
+    
+    
+>
+    
+    
+
+<ea-elements-loader elements="ea-pagination">
+</ea-elements-loader>
+<ea-pagination
+    unresolved
+    slot="pagination"
+    total-count=""
+    page-size="6"
+    current-page="1"
+    next-text="Next"
+    previous-text="Previous"
+    theme="light"
+    
+></ea-pagination>
+
+
+</ea-row>
+
+
+
+
+    
+        
+    
+
+
+
+    
+    <div style="display: none;"></div>
+</main>
+<footer role="contentinfo">
+    
+
+    
+        
+            
+                
+<ea-elements-loader elements="ea-local-footer, ea-local-links, ea-local-link, ea-social-links, ea-social-link, ea-hybrid-regional-rating">
+</ea-elements-loader>
+<ea-local-footer
+    theme="light"
+    sal-game-slug="fifa-mobile"
+    rating-lang="en"
+    unresolved
+>
+    <ea-local-links
+        slot="local-links"
+        title-text="FIFA Mobile"
+        text-color="light"
+        unresolved
+    >
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/en-us/games/fifa/fifa-mobile/"
+            link-title="Home"
+            link-text="Home"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/en-us/games/fifa/fifa-mobile/"
+                title="Home"
+            >Home</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/en-us/games/fifa/fifa-mobile/news"
+            link-title="News"
+            link-text="News"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/en-us/games/fifa/fifa-mobile/news"
+                title="News"
+            >News</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="https://help.ea.com/fifa/fifa-mobile/"
+            link-title="Help"
+            link-text="Help"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="https://help.ea.com/fifa/fifa-mobile/"
+                title="Help"
+            >Help</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="https://answers.ea.com/t5/FIFA-Mobile/ct-p/fifa-mobile-19-en"
+            link-title="Forums"
+            link-text="Forums"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="https://answers.ea.com/t5/FIFA-Mobile/ct-p/fifa-mobile-19-en"
+                title="Forums"
+            >Forums</a>
+        </ea-local-link>
+    
+    </ea-local-links>
+
+    <ea-social-links
+        slot="social-links"
+        text-color="light"
+        title-text="Follow Us"
+        unresolved
+    >
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://twitter.com/EAFIFAMOBILE"
+            link-title="Twitter"
+            link-target="_blank"
+            text-color="light"
+            social-network="twitter"
+            unresolved
+        >
+            <a
+                href="https://twitter.com/EAFIFAMOBILE"
+                title="Twitter"
+            >twitter</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.instagram.com/easportsfifamobile/"
+            link-title="Instagram"
+            link-target="_blank"
+            text-color="light"
+            social-network="instagram"
+            unresolved
+        >
+            <a
+                href="https://www.instagram.com/easportsfifamobile/"
+                title="Instagram"
+            >instagram</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.facebook.com/EASPORTSFIFAMobile/"
+            link-title="Facebook"
+            link-target="_blank"
+            text-color="light"
+            social-network="facebook"
+            unresolved
+        >
+            <a
+                href="https://www.facebook.com/EASPORTSFIFAMobile/"
+                title="Facebook"
+            >facebook</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.youtube.com/channel/UCDK7jNQhLIYAiYqe-lWpZVQ"
+            link-title="YouTube"
+            link-target="_blank"
+            text-color="light"
+            social-network="youtube"
+            unresolved
+        >
+            <a
+                href="https://www.youtube.com/channel/UCDK7jNQhLIYAiYqe-lWpZVQ"
+                title="YouTube"
+            >youtube</a>
+        </ea-social-link>
+    
+    </ea-social-links>
+
+    
+
+    
+
+    
+<ea-elements-loader elements="ea-hybrid-regional-rating"></ea-elements-loader>
+
+<ea-hybrid-regional-rating
+    
+    
+        slug="fifa-mobile"
+    
+    
+        slot="regional-rating"
+    
+    
+        lang="en"
+    
+>
+</ea-hybrid-regional-rating>
+
+
+    
+</ea-local-footer>
+
+            
+        
+    
+
+
+    
+
+    
+        
+            
+                
+
+    
+<ea-elements-loader elements="ea-network-footer, ea-network-legal, ea-link, ea-content-loader">
+</ea-elements-loader>
+<ea-network-footer
+    theme="dark"
+    
+    
+        logo-image="https://media.contentapi.ea.com/content/dam/eacom/en-us/common/october-ea-ring.png"
+        logo-tooltip=""
+    
+    
+        logo-link-url="https://www.ea.com"
+        logo-link-text="EA"
+        logo-link-tooltip="EA"
+    
+    unresolved
+>
+    
+        <img
+            src="https://media.contentapi.ea.com/content/dam/eacom/en-us/common/october-ea-ring.png"
+            alt=""
+        />
+    
+    
+        
+            <ea-link
+                slot="link"
+                link-href="/en-us/games"
+                link-title="Browse Games"
+                link-text="Browse Games"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-us/games"
+                    title="Browse Games"
+                >Browse Games</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/en-us/news"
+                link-title="Latest News"
+                link-text="Latest News"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-us/news"
+                    title="Latest News"
+                >Latest News</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://help.ea.com/en/"
+                link-title="Help Center"
+                link-text="Help Center"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://help.ea.com/en/"
+                    title="Help Center"
+                >Help Center</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/en-us/forums"
+                link-title="EA Forums"
+                link-text="EA Forums"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-us/forums"
+                    title="EA Forums"
+                >EA Forums</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/en-us/about"
+                link-title="About Us"
+                link-text="About Us"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-us/about"
+                    title="About Us"
+                >About Us</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/en-us/careers"
+                link-title="Careers"
+                link-text="Careers"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-us/careers"
+                    title="Careers"
+                >Careers</a>
+            </ea-link>
+        
+    
+    
+    
+<ea-elements-loader elements="ea-locale-selector">
+</ea-elements-loader>
+<ea-locale-selector
+    slot="locale-selector"
+    theme="dark"
+    value="en-us"
+    label-text=""
+    
+    unresolved
+    >
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="en-us"
+        >United States</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="en-gb"
+        >United Kingdom</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="ar-sa"
+        >العربية</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="en-au"
+        >Australia</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="pt-br"
+        >Brasil</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="zh-hk"
+        >繁體中文(香港)</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="cs-cz"
+        >Česká republika</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="da-dk"
+        >Danmark</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="de-de"
+        >Deutschland</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="es-es"
+        >España</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="fr-fr"
+        >France</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="it-it"
+        >Italia</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="ja-jp"
+        >日本</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="ko-kr"
+        >대한민국</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="es-mx"
+        >México</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="nl-nl"
+        >Nederland</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="nb-no"
+        >Norge</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="pl-pl"
+        >Polska</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="ru-ru"
+        >Россия</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="sv-se"
+        >Sverige</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="tr-tr"
+        >Türkiye</ea-locale-selector-option>
+    
+</ea-locale-selector>
+
+    <ea-network-legal
+        slot="network-legal"
+        copyright-text="© 2023 Electronic Arts Inc."
+        text-color="dark"
+        unresolved
+    >
+        
+            <ea-link
+                slot="link"
+                link-href="http://www.ea.com/en-us/legal"
+                link-title="Legal &amp; Privacy"
+                link-text="Legal &amp; Privacy"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="http://www.ea.com/en-us/legal"
+                    title="Legal &amp; Privacy"
+                >Legal &amp; Privacy</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="http://www.ea.com/en-us/service-updates"
+                link-title="Online Service Updates"
+                link-text="Online Service Updates"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="http://www.ea.com/en-us/service-updates"
+                    title="Online Service Updates"
+                >Online Service Updates</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://www.ea.com/en-us/terms-of-service"
+                link-title="User Agreement"
+                link-text="User Agreement"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://www.ea.com/en-us/terms-of-service"
+                    title="User Agreement"
+                >User Agreement</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://www.ea.com/legal/privacy-and-cookie-policy"
+                link-title="Privacy &amp; Cookie Policy (Your Privacy Rights)"
+                link-text="Privacy &amp; Cookie Policy (Your Privacy Rights)"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://www.ea.com/legal/privacy-and-cookie-policy"
+                    title="Privacy &amp; Cookie Policy (Your Privacy Rights)"
+                >Privacy &amp; Cookie Policy (Your Privacy Rights)</a>
+            </ea-link>
+        
+        <ea-content-loader
+            slot="link"
+            content-url="https://www.ea.com/ccpa/footer-link"
+        >
+        </ea-content-loader>
+        
+    </ea-network-legal>
+    
+<ea-elements-loader elements="ea-truste">
+</ea-elements-loader>
+
+
+<script async>
+
+        function createElement(id, hidden) {
+            const element = document.createElement("div");
+
+            element.id = id;
+            element.hidden = hidden;
+
+            return element;
+        }
+
+        function createScriptTag() {
+            const script = document.createElement("script");
+            let src = `//consent.trustarc.com/notice?` +
+                `domain=ea.com&c=teconsent&js=nj&noticeType=bb&text=true&gtm=1&pn=1`;
+
+            if (shouldAutoShowCookiePreferences()) {
+                src = src + "&behavior=expressed";
+            }
+
+            script.src = src;
+            script.setAttribute("crossorigin", "");
+
+            return script;
+        }
+
+        function shouldAutoShowCookiePreferences() {
+            const showCookiePreferencesParam = "show=cookiePreferences";
+            const urlSearchParams = window.location.search.slice(1).split("&");
+
+            return urlSearchParams.includes(showCookiePreferencesParam);
+        }
+
+        function isLocalNDS(componentUrlPrefix) {
+            return componentUrlPrefix && componentUrlPrefix.includes('local');
+        }
+
+        function isNDSBranch(componentUrlPrefix) {
+            return componentUrlPrefix && componentUrlPrefix.includes('branch');
+        }
+
+        function isNDSVersionGreaterOrEqual(componentUrlPrefix) {
+            let ndsVersion = componentUrlPrefix && componentUrlPrefix.match('/release\/([^\/]*)/')[1];
+            let isGreaterOrEqual = ndsVersion && ndsVersion.localeCompare("4.40.5", undefined, { numeric: true, sensitivity: 'base' });
+
+            return isGreaterOrEqual >= 0;
+        }
+
+        const componentUrlPrefix = window.nds.componentUrlPrefix;
+
+        /**
+         * Check for backwards compatibility with NDS version greater or equal to when TrustArc was integrated
+         */
+        if (
+            isLocalNDS(componentUrlPrefix) ||
+            isNDSBranch(componentUrlPrefix) ||
+            isNDSVersionGreaterOrEqual(componentUrlPrefix)
+        )
+        {
+            const trustArcScript = createScriptTag();
+            const elements = document.createDocumentFragment();
+
+            elements.appendChild(createElement("consent_blackbar", false));
+            elements.appendChild(createElement("teconsent", true));
+            elements.appendChild(trustArcScript);
+
+            document.body.appendChild(elements);
+        }
+
+</script>
+<ea-truste
+    unresolved
+    slot="truste"
+    
+        domain="ea.com"
+    
+>
+    <div>
+        
+            <a href="//privacy.truste.com/privacy-seal/validation?rid=f1a11c5d-0232-4077-8498-2e69a38c1335" target="_blank">
+                <img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=f1a11c5d-0232-4077-8498-2e69a38c1335" alt="TRUSTe"/>
+            </a>
+        
+    </div>
+</ea-truste>
+
+</ea-network-footer>
+
+
+
+            
+        
+    
+
+
+</footer>
+<ea-player player-endpoint="/user-data"></ea-player>
+
+
+    
+        
+            
+                
+<ea-elements-loader elements="ea-modal">
+</ea-elements-loader>
+<ea-modal
+    modal
+    unresolved
+    
+        id="eacomagegate"
+    
+    
+        theme="dark"
+    
+    
+>
+    
+<ea-elements-loader elements="ea-age-gate">
+</ea-elements-loader>
+<ea-age-gate
+    unresolved
+    slot="age-gate"
+    id="eacomagegate"
+    
+        age="18"
+    
+    
+        error="You are not eligible to view this content."
+    
+    
+    
+        message="Please provide your birth date. "
+    
+>
+    
+        
+<ea-elements-loader elements="ea-date-field">
+</ea-elements-loader>
+<ea-date-field
+    
+        slot="date-field"
+    
+    
+        type="date"
+    
+    
+    
+    
+    
+    
+        text-color="light"
+    
+    
+    
+        month-placeholder="MM"
+    
+    
+        day-placeholder="DD"
+    
+    
+        year-placeholder="YYYY"
+    
+    
+    
+        label-text="Enter your birthdate"
+    
+    
+    
+    unresolved
+>
+</ea-date-field>
+
+    
+    
+        
+<ea-elements-loader elements="ea-submit">
+</ea-elements-loader>
+<ea-submit
+    unresolved
+    
+        slot="submit"
+    
+    
+        value-text="Submit"
+    
+    
+        text-color="light"
+    
+    
+    
+    
+></ea-submit>
+
+    
+</ea-age-gate>
+
+</ea-modal>
+
+            
+        
+    
+
+
+
+
+    
+        
+            
+                <script src="//pl.ea.com/release/4.53.2/elements/browser-support.min.js"></script>
+<script>
+    eaBrowserSupport.requiredFeatures = 'picture';
+    eaBrowserSupport.requiredHeading = 'Sorry, this browser is not supported';
+    eaBrowserSupport.requiredText = 'Please download a supported browser to view this webpage.';
+    eaBrowserSupport.recommendedFeatures = 'cssgrid';
+    eaBrowserSupport.recommendedText = 'This browser is not recommended and the webpage may not display properly.';
+    eaBrowserSupport.ctas = [{"text":"Download Chrome","url":"https://www.google.com/chrome/"},{"text":"Download Firefox","url":"https://www.mozilla.org/firefox/new/"},{"text":"Download Edge","url":"https://www.microsoft.com/edge/"}];
+    eaBrowserSupport.dismissText = 'Dismiss';
+    eaBrowserSupport.svgLogo = '';
+    eaBrowserSupport.init();
+</script>
+
+            
+        
+    
+
+
+
+
+    <ea-type-kit kit-url="//use.typekit.net/jjd6ead.js"></ea-type-kit>
+
+
+    </body>
+</html>
+
